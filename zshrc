@@ -40,4 +40,13 @@ alias zed="/mnt/c/Users/gurvi/AppData/Local/Programs/Zed/Zed.exe"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
+# Push dotfile changes to GitHub with one command
+sync() {
+    cd ~/dotfiles
+    git add .
+    # Use a custom message if provided, otherwise use a default
+    local msg="${1:-update}"
+    git commit -m "$msg"
+    git push
+    cd - > /dev/null
+}
